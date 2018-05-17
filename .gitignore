@@ -39,3 +39,6 @@ secrets.yml
 .gradletasknamecache
 .sts4-cache
 ${M2_HOME}/
+.sonar
+mvnw
+mvnw.cmd
