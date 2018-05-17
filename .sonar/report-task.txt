@@ -1,6 +1,0 @@
-projectKey=restful-web-services
-serverUrl=http://localhost:9000/sonar
-serverVersion=6.7.3.38370
-dashboardUrl=http://localhost:9000/sonar/dashboard/index/restful-web-services
-ceTaskId=AWNtR0VKUeLyySwA5RBb
-ceTaskUrl=http://localhost:9000/sonar/api/ce/task?id=AWNtR0VKUeLyySwA5RBb
