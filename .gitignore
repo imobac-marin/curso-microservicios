@@ -42,3 +42,4 @@ ${M2_HOME}/
 .sonar
 mvnw
 mvnw.cmd
+.mvn/**
