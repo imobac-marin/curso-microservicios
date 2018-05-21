@@ -21,17 +21,36 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+/**
+ * The Class UserJPAController.
+ */
 @RestController
 public class UserJPAController {
 
+	/** The user repository. */
 	@Autowired
 	private UserRepository userRepository;
+	
+	/** The post repository. */
+	@Autowired
+	private PostRepository postRepository;
 
+	/**
+	 * Retrieve all users.
+	 *
+	 * @return the list
+	 */
 	@GetMapping("/jpa/users")
 	public List<User> retrieveAllUsers() {
 		return userRepository.findAll();
 	}
 
+	/**
+	 * Retrieve user.
+	 *
+	 * @param id the id
+	 * @return the resource
+	 */
 	@GetMapping("/jpa/users/{id}")
 	public Resource<User> retrieveUser(@PathVariable int id) {
 		Optional<User> user = userRepository.findById(id);
@@ -47,6 +66,12 @@ public class UserJPAController {
 		return resource;
 	}
 
+	/**
+	 * Creates the user.
+	 *
+	 * @param user the user
+	 * @return the response entity
+	 */
 	@PostMapping("/jpa/users")
 	public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
 		User savedUser = userRepository.save(user);
@@ -54,11 +79,25 @@ public class UserJPAController {
 		return ResponseEntity.created(location).build();
 	}
 
+	/**
+	 * Delete user.
+	 *
+	 * @param id the id
+	 */
 	@DeleteMapping("/jpa/users/{id}")
 	public void DeleteUser(@PathVariable int id) {
 		userRepository.deleteById(id);
 	}
 
+	
+	//Métodos para la parte de los posts del usuario.
+	
+	/**
+	 * Retrieve all user posts.
+	 *
+	 * @param id the id
+	 * @return the list
+	 */
 	@GetMapping("/jpa/users/{id}/posts")
 	public List<Post> retrieveAllUserPosts(@PathVariable int id) {
 		Optional<User> userOptional = userRepository.findById(id);
@@ -67,5 +106,29 @@ public class UserJPAController {
 		}
 
 		return userOptional.get().getPosts();
+	}
+	
+	/**
+	 * Creates the post.
+	 *
+	 * @param id the id
+	 * @param post the post
+	 * @return the response entity
+	 */
+	@PostMapping("/jpa/users/{id}/posts")
+	public ResponseEntity<Object> createPost(@PathVariable int id, @RequestBody Post post) {
+		Optional<User> userOptional = userRepository.findById(id);
+		if (!userOptional.isPresent()) {
+			throw new UserNotFoundException("id-" + id);
+		}
+		
+		User user = userOptional.get();
+		
+		post.setUser(user);
+		postRepository.save(post);
+		
+		
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(post.getId()).toUri();
+		return ResponseEntity.created(location).build();
 	}
 }

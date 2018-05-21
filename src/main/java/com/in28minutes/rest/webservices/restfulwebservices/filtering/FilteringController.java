@@ -11,9 +11,17 @@ import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
+/**
+ * The Class FilteringController.
+ */
 @RestController
 public class FilteringController {
 
+	/**
+	 * Retrieve some bean.
+	 *
+	 * @return the mapping jackson value
+	 */
 	// Filtro field1 y field2
 	@GetMapping("/filtering")
 	public MappingJacksonValue retrieveSomeBean() {
@@ -28,6 +36,11 @@ public class FilteringController {
 		return mapping;
 	}
 
+	/**
+	 * Retrieve list of some beans.
+	 *
+	 * @return the mapping jackson value
+	 */
 	// Filtro field2 y field3
 	@GetMapping("/filtering-list")
 	public MappingJacksonValue retrieveListOfSomeBeans() {

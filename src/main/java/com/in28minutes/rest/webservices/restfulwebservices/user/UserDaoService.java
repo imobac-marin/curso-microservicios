@@ -7,9 +7,16 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * The Class UserDaoService.
+ */
 @Component
 public class UserDaoService {
+	
+	/** The users. */
 	private static List<User> users = new ArrayList<>();
+	
+	/** The users count. */
 	private static int usersCount = 3;
 	static {
 		users.add(new User(1, "Adam", new Date()));
@@ -17,10 +24,21 @@ public class UserDaoService {
 		users.add(new User(3, "Jack", new Date()));
 	}
 
+	/**
+	 * Find all.
+	 *
+	 * @return the list
+	 */
 	public List<User> findAll() {
 		return users;
 	}
 
+	/**
+	 * Save.
+	 *
+	 * @param user the user
+	 * @return the user
+	 */
 	public User save(User user) {
 		if (user.getId() == null) {
 			user.setId(++usersCount);
@@ -29,6 +47,12 @@ public class UserDaoService {
 		return user;
 	}
 
+	/**
+	 * Find one.
+	 *
+	 * @param id the id
+	 * @return the user
+	 */
 	public User findOne(int id) {
 		for (User user : users) {
 			if (user.getId() == id) {
@@ -38,6 +62,12 @@ public class UserDaoService {
 		return null;
 	}
 
+	/**
+	 * Delete by id.
+	 *
+	 * @param id the id
+	 * @return the user
+	 */
 	public User deleteById(int id) {
 		Iterator<User> iterator = users.iterator();
 		while (iterator.hasNext()) {

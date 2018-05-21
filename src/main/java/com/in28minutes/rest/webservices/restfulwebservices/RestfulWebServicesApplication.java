@@ -8,13 +8,26 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 
+/**
+ * The Class RestfulWebServicesApplication.
+ */
 @SpringBootApplication
 public class RestfulWebServicesApplication {
 
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(RestfulWebServicesApplication.class, args);
 	}
 	
+	/**
+	 * Locale resolver.
+	 *
+	 * @return the locale resolver
+	 */
 	@Bean
 	public LocaleResolver localeResolver(){
 		AcceptHeaderLocaleResolver localeResolver = new AcceptHeaderLocaleResolver();

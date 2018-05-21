@@ -13,17 +13,30 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * The Class SwaggerConfig.
+ */
 //Configuration
 @Configuration
 // Enable Swagger
 @EnableSwagger2
 public class SwaggerConfig {
 	
+	/** The Constant DEFAULT_CONTACT. */
 	public static final Contact DEFAULT_CONTACT = new Contact("Imobac Marín", "https://github.com/imobac-marin", "imomarin@gmail.com");
+	
+	/** The Constant DEFAULT_API_INFO. */
 	public static final ApiInfo DEFAULT_API_INFO = new ApiInfo("Increíble título de la API", "Increíble documentación de la API", "1.0",
 			"urn:tos", DEFAULT_CONTACT, "Apache 2.0", "http://www.apache.org/licenses/LICENSE-2.0");
+	
+	/** The Constant DEFAULT_PRODUCES_AND_CONSUMES. */
 	private static final Set<String> DEFAULT_PRODUCES_AND_CONSUMES = new HashSet<String>(Arrays.asList("application/json","application/xml"));
 
+	/**
+	 * Api.
+	 *
+	 * @return the docket
+	 */
 	// Bean - Docket
 	@Bean
 	public Docket api() {

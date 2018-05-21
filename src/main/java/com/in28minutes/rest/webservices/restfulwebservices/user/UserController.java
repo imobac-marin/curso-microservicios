@@ -20,13 +20,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+/**
+ * The Class UserController.
+ */
 @RestController
 public class UserController {
 
+	/** The service. */
 	@Autowired
 	private UserDaoService service;
 
 	// GET /users
+	/**
+	 * Retrieve all users.
+	 *
+	 * @return the list
+	 */
 	// retrieveAllUsers
 	@GetMapping("/users")
 	public List<User> retrieveAllUsers() {
@@ -34,6 +43,12 @@ public class UserController {
 	}
 
 	// GET /users/{id}
+	/**
+	 * Retrieve user.
+	 *
+	 * @param id the id
+	 * @return the resource
+	 */
 	// retrieveUser(int id)
 	@GetMapping("/users/{id}")
 	public Resource<User> retrieveUser(@PathVariable int id) {
@@ -50,6 +65,12 @@ public class UserController {
 		return resource;
 	}
 
+	/**
+	 * Creates the user.
+	 *
+	 * @param user the user
+	 * @return the response entity
+	 */
 	@PostMapping("/users")
 	public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
 		User savedUser = service.save(user);
@@ -58,6 +79,11 @@ public class UserController {
 		return ResponseEntity.created(location).build();
 	}
 
+	/**
+	 * Delete user.
+	 *
+	 * @param id the id
+	 */
 	@DeleteMapping("/users/{id}")
 	public void DeleteUser(@PathVariable int id) {
 		User user = service.deleteById(id);
