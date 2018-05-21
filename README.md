@@ -15,3 +15,7 @@
 ### POST /jpa/users (con JPA)
 ## Borrar un usuario: 
 ### DELETE /jpa/users/{id} (con JPA)
+## Obtener todos los posts de un usuario:
+### GET /jpa/users/{id}/posts
+## Guardar un post de un usuario:
+### POST /jpa/users/{id}/posts
